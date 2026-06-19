@@ -1,0 +1,135 @@
+---
+
+---
+
+<header>
+  <a href="/" class="logo" aria-label="LunarTrust home">
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 22 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="2"
+      ></circle>
+      <circle cx="14" cy="11" r="7" fill="var(--color-bg)"></circle>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-lunar">Lunar</span><span class="logo-trust">Trust</span>
+    </span>
+  </a>
+
+  <nav>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <!-- Sun icon (shown in dark mode) -->
+      <svg
+        class="icon-sun"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"
+        ></circle>
+        <path
+          d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path>
+      </svg>
+      <!-- Moon icon (shown in light mode) -->
+      <svg
+        class="icon-moon"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById("theme-toggle")!;
+  const html = document.documentElement;
+
+  toggle.addEventListener("click", () => {
+    const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+    html.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+</script>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-8);
+    border-bottom: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .logo-text {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-lunar {
+    color: var(--color-text);
+  }
+
+  .logo-trust {
+    color: var(--color-text-muted);
+  }
+
+  #theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast);
+  }
+
+  #theme-toggle:hover {
+    color: var(--color-text);
+  }
+
+  /* Icon visibility controlled by theme */
+  .icon-moon {
+    display: none;
+  }
+  .icon-sun {
+    display: block;
+  }
+
+  :global([data-theme="light"]) .icon-moon {
+    display: block;
+  }
+  :global([data-theme="light"]) .icon-sun {
+    display: none;
+  }
+</style>
