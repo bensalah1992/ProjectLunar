@@ -1,16 +1,15 @@
 /* ─── Variables ─────────────────────────────────────────── */
 
 :root {
-  /* Dark mode defaults */
-  --color-bg:             #0d0b14;
-  --color-surface:        #13111f;
-  --color-surface-raised: #1a1729;
-  --color-border:         #2a2640;
-  --color-border-subtle:  #1f1c30;
+  --color-bg:             #24273a;
+  --color-surface:        #1e2030;
+  --color-surface-raised: #363a4f;
+  --color-border:         #494d64;
+  --color-border-subtle:  #181926;
 
-  --color-text:           #e8e4f0;
-  --color-text-secondary: #9890b8;
-  --color-text-muted:     #5a5470;
+  --color-text:           #cad3f5;
+  --color-text-secondary: #b8c0e0;
+  --color-text-muted:     #6e738d;
 
   /* Signal colors — status only (green / yellow / red) */
   --color-signal-green:  #22c55e;
