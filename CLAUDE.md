@@ -2,80 +2,54 @@
 
 ## What is this?
 
-A URL scanner for everyday users. Paste a URL, get a clear answer:
-can I trust this website? Results are shown as a traffic light score
-(green / yellow / red). No technical jargon, no overwhelming details.
-
-## Target Audience
-
-- Regular users checking unknown online shops
-- People who want a quick trust check before clicking a link
-- Non-technical users who can't spot scam sites on their own
-- Simplicity and clarity are the top priority
+A URL trust scanner for everyday users. Paste a URL, get a clear
+green / yellow / red verdict.
 
 ## Commands
 
-- `npm run dev` - start development server
+- `npm run dev` - start dev server
 - `npm run build` - production build
-- `npm run preview` - preview build locally
+- `npm run preview` - preview locally
 
 ## Tech Stack
 
-- Astro
-- TypeScript (strict)
-- Plain CSS with CSS variables (no Tailwind)
-- Netlify for deployment
-- Netlify Functions for API calls
+- Astro + TypeScript (strict)
+- Plain CSS with CSS variables — no Tailwind
+- Netlify deployment + Netlify Functions for API calls
 
 ## Code Style
 
-- PascalCase for components (e.g. ScanInput.astro)
-- camelCase for variables and functions
-- Components are self-contained and reusable via props
-- Page-level data goes at the top of the file:
-  const DATA = {}
-  passed into components like:
-  <Component {...data} />
+- PascalCase for components, camelCase for variables/functions
+- CSS variables only, no hardcoded colors
+- No external UI libraries or animation packages
 - TypeScript for all logic files (.ts)
-- Prefer Astro built-in APIs where possible
 
-## Design
+## Design Rules
 
-- Dark mode by default, light mode toggle available
-- Minimal — low use of color, no visual noise
-- Signal colors (green/yellow/red) reserved for status only
-- Component-based, clean, maintainable
-- Performance is a priority. keep it fast
-- Visual reference: virustotal.com. but our own brand
+- Dark mode default, light mode toggle available
+- Signal colors (green/yellow/red) reserved for scan results only
+- Minimal, fast, component-based
+- Performance first — CSS animations only, no heavy JS
 
 ## Security
 
-- No URL logging or storage
-- API keys only in Netlify environment variables, never in code
-- No user data is stored or forwarded
+- No URL logging or storage. Core product promise!
+- API keys in Netlify environment variables only, never in code
 
-## Project Structure
+## Scan Logic
 
-- src/components/ui/ — buttons, badges, cards
-- src/components/scanner/ — scanner-specific components
-- src/components/layout/ — header, footer, navigation
-- src/pages/api/ — Netlify Functions / API endpoints
-- src/lib/ — scoring logic, helper functions
-- src/types/ — TypeScript type definitions
-- src/styles/global.css — global styles and CSS variables
+- All API calls run in parallel via Promise.allSettled()
+- 8 second timeout per API call — app never hangs
+- Score is rule-based and transparent:
+  - DANGER: no SSL or Safe Browsing threat found
+  - WARNING: domain under 6 months, SSL expiring under 14 days, no Wayback history
+  - TRUSTED: none of the above
 
 ## Commit Convention
 
+- feat: new feature
+- style: CSS only
 - layout: layout changes
-- style: CSS changes
-- feat: new features
-- fix: bug fixes
-- api: API integrations
-
-## Key Decisions
-
-- No data storage, this is our main differentiator
-- Open source on GitHub
-- Score is rule-based and transparent, not a black box
-- All API calls use Promise.allSettled(). the app never hangs
-- 8 second timeout for slow APIs
+- fix: bug fix
+- api: API integration
+- docs: documentation
