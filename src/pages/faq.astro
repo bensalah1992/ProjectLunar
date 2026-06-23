@@ -1,0 +1,326 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const categories = [
+  {
+    title: "The Basics",
+    items: [
+      {
+        q: "What is LunarTrust?",
+        a: "LunarTrust is a free URL scanner that tells you whether a website is safe to visit. Paste any URL and get a clear verdict (green, yellow, or red). No account needed, no data stored.",
+      },
+      {
+        q: "Who is this for?",
+        a: "Anyone who wants a quick second opinion before clicking a link or buying from an unknown shop. You do not need to be a Webdeveloper. The result is designed to be understood at a glance.",
+      },
+      {
+        q: "Is LunarTrust free?",
+        a: "Yes, completely free. There are no plans, no subscriptions, and no hidden costs.",
+      },
+    ],
+  },
+  {
+    title: "The Scan",
+    items: [
+      {
+        q: "What does LunarTrust actually check?",
+        a: null,
+        custom: `Every scan runs five checks in parallel:
+        <ul>
+          <li><strong>SSL Certificate</strong> — is the connection encrypted and valid?</li>
+          <li><strong>Google Safe Browsing</strong> — is the URL flagged as malware or phishing?</li>
+          <li><strong>Domain Age</strong> — how long has this domain existed?</li>
+          <li><strong>Wayback Machine</strong> — does this site have a recorded history?</li>
+          <li><strong>URL Analysis</strong> — does the URL contain suspicious patterns like brand impersonation or dangerous file types?</li>
+        </ul>`,
+      },
+      {
+        q: "How long does a scan take?",
+        a: "Usually between 2 and 5 seconds. All checks run at the same time and the result appears as soon as the slowest check finishes.",
+      },
+      {
+        q: "What do the colors mean?",
+        a: null,
+        custom: `<ul>
+          <li><strong class="green">Green (Trusted)</strong> — no threats or warning signs detected.</li>
+          <li><strong class="yellow">Yellow (Warning)</strong> — at least one check raised a concern. Proceed carefully and read the details.</li>
+          <li><strong class="red">Red (Danger)</strong> — a serious threat was detected, such as malware, phishing, or an invalid SSL certificate. We recommend not visiting the site.</li>
+        </ul>`,
+      },
+      {
+        q: "Can I scan any URL?",
+        a: "You can scan any publicly accessible URL. The input accepts full URLs (https://example.com) and bare domains (example.com). The https:// is added automatically if missing.",
+      },
+      {
+        q: "Why does a well-known site sometimes get a Warning?",
+        a: "A Warning does not mean the site is dangerous. It means one check raised a concern worth knowing about. A recently registered domain or a site without Wayback Machine history will trigger a Warning even if it is perfectly legitimate. Always read the individual check results, not just the overall score.",
+      },
+    ],
+  },
+  {
+    title: "Privacy and Data",
+    items: [
+      {
+        q: "Do you store the URLs I scan?",
+        a: "No. URLs are processed in memory during the scan and never written to a database or disk. Once the scan completes, the URL is gone.",
+      },
+      {
+        q: "Do you use cookies or tracking?",
+        a: "No cookies, no analytics, no tracking of any kind. The only thing stored in your browser is your theme preference (dark or light mode).",
+      },
+      {
+        q: "Does Google see the URLs I scan?",
+        a: "Yes, one of the checks uses the Google Safe Browsing API, which means Google receives the URL. This is explained in detail in the Privacy Policy. If you consider a URL sensitive, be aware of this trade-off. The other four checks do not involve Google.",
+      },
+    ],
+  },
+  {
+    title: "Trust and Transparency",
+    items: [
+      {
+        q: "Is LunarTrust open source?",
+        a: "Yes. The full source code is available on GitHub under the MIT License. You can read exactly how the scoring works, verify what data is sent where, and contribute improvements.",
+      },
+      {
+        q: "Can I trust the results?",
+        a: "LunarTrust gives you a fast, honest signal, !not a guarantee!. No tool can catch every threat. If a site gets a green result, it means no known threats were detected, not that the site is unconditionally safe. We are transparent about what each check does and does not cover.",
+      },
+      {
+        q: "Who built this?",
+        a: "LunarTrust is an independent project built by a solo developer who wanted a privacy-first alternative to commercial URL scanners. It is not affiliated with Google, Netlify, or any of the third-party services it uses.",
+      },
+    ],
+  },
+  {
+    title: "Technical",
+    items: [
+      {
+        q: "Why does Domain Age sometimes show no data?",
+        a: "Some domain registries do not provide public registration data. German .de domains, for example, do not disclose the registration date through RDAP. When data is unavailable, the check is marked as unknown and does not affect the overall score.",
+      },
+      {
+        q: "Why does the Wayback Machine check show no history for a site I know exists?",
+        a: "The Wayback Machine does not archive every website. New sites, private tools, and regional sites are frequently not archived. A missing entry does not mean the site is new or suspicious. It is marked as unknown and excluded from the score.",
+      },
+      {
+        q: "What is URL Analysis?",
+        a: "URL Analysis is a local heuristic check. It runs entirely without contacting any external service. It looks for structural patterns associated with phishing and malware: brand impersonation, suspicious TLDs, dangerous file extensions, typosquatting, and more. Because it is fully local, your URL never leaves the scan function for this check.",
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="FAQ — LunarTrust"
+  description="Frequently asked questions about LunarTrust. How scanning works, what the results mean, and how your privacy is protected."
+>
+  <div class="faq-page">
+    <header class="faq-header">
+      <h1>Frequently Asked Questions</h1>
+      <p class="faq-subtext">
+        How scanning works, what results mean, and how your data is handled.
+      </p>
+    </header>
+
+    <div class="faq-body">
+      {
+        categories.map((cat) => (
+          <section class="category">
+            <h2 class="category-title">{cat.title}</h2>
+            <div class="items">
+              {cat.items.map((item) => (
+                <details class="item">
+                  <summary class="question">
+                    <span>{item.q}</span>
+                    <svg
+                      class="chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 6l4 4 4-4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="answer">
+                    {item.custom ? (
+                      <Fragment set:html={item.custom} />
+                    ) : (
+                      <p>{item.a}</p>
+                    )}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .faq-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-8);
+  }
+
+  .faq-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .faq-header h1 {
+    font-size: var(--text-3xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .faq-subtext {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+  }
+
+  .faq-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .category-title {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .item[open] {
+    border-color: var(--color-border);
+  }
+
+  .question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    user-select: none;
+    transition: color var(--transition-fast);
+  }
+
+  .question::-webkit-details-marker {
+    display: none;
+  }
+
+  .question:hover {
+    color: var(--color-text);
+  }
+
+  .question span {
+    flex: 1;
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .item[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .answer {
+    padding: 0 var(--space-6) var(--space-5);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .answer p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-top: var(--space-4);
+  }
+
+  .answer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .answer ul li {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .answer ul li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--color-text-muted);
+  }
+
+  .answer strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .answer .green {
+    color: var(--color-signal-green);
+  }
+  .answer .yellow {
+    color: var(--color-signal-yellow);
+  }
+  .answer .red {
+    color: var(--color-signal-red);
+  }
+
+  @media (max-width: 600px) {
+    .faq-page {
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .question {
+      padding: var(--space-4);
+    }
+
+    .answer {
+      padding: 0 var(--space-4) var(--space-4);
+    }
+  }
+</style>
