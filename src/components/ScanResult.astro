@@ -75,6 +75,8 @@ const CHECK_IDS = ["ssl", "domainAge", "safebrowsing", "wayback"] as const;
         ))
       }
     </div>
+
+    <a href="#scan-form" class="scan-another">↑ Scan another URL</a>
   </div>
 </section>
 
@@ -235,6 +237,13 @@ const CHECK_IDS = ["ssl", "domainAge", "safebrowsing", "wayback"] as const;
     btn.setAttribute("aria-expanded", String(!expanded));
     details.classList.toggle("hidden");
     btn.querySelector(".chevron")!.classList.toggle("rotated");
+  });
+
+  document.querySelector(".scan-another")!.addEventListener("click", (e) => {
+    e.preventDefault();
+    const input = document.querySelector<HTMLInputElement>('input[name="url"]');
+    input?.scrollIntoView({ behavior: "smooth", block: "center" });
+    input?.focus({ preventScroll: true });
   });
 </script>
 
@@ -500,6 +509,22 @@ const CHECK_IDS = ["ssl", "domainAge", "safebrowsing", "wayback"] as const;
   :global(.tile-val) {
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
+  }
+
+  /* ── Scan Another ───────────────────────────────────────── */
+
+  .scan-another {
+    display: block;
+    text-align: center;
+    font-size: var(--text-xs);
+    color: var(--color-border);
+    text-decoration: none;
+    padding: var(--space-4) 0;
+    letter-spacing: 0.03em;
+  }
+
+  .scan-another:hover {
+    color: var(--color-text-muted);
   }
 
   /* ── Responsive ──────────────────────────────────────────── */
