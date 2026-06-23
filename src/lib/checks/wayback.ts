@@ -73,13 +73,12 @@ export async function checkWayback(hostname: string, signal: AbortSignal): Promi
     };
   }
 
-  // At least one API responded — no history found → genuine warning signal
   if (first.status !== 'found' && latest.status !== 'found') {
     return {
       id: 'wayback',
       label: 'Wayback Machine',
       summary: 'No archive history found',
-      score: 'warning',
+      score: 'unknown',
       details: { Status: 'Not archived' },
     };
   }
