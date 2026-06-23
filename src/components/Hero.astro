@@ -49,6 +49,8 @@
       <button type="submit">Scan URL</button>
     </form>
 
+    <p id="url-error" class="url-error" aria-live="polite"></p>
+
     <p class="privacy-note">
       🔒 We do not store any URLs you submit. ·
       <a href="/privacy">Privacy Policy</a>
@@ -58,14 +60,42 @@
 
 <script>
   const form = document.getElementById('scan-form') as HTMLFormElement;
+  const errorEl = document.getElementById('url-error') as HTMLParagraphElement;
+  const input = form.querySelector('input[name="url"]') as HTMLInputElement;
+
+  function isValidUrl(url: string): boolean {
+    try {
+      const { hostname } = new URL(url);
+      return /^[^\s.]+\.[^\s.]{2,}$/.test(hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  function showValidationError() {
+    errorEl.textContent = 'Please enter a valid URL, e.g. https://example.com';
+    input.setAttribute('aria-invalid', 'true');
+  }
+
+  function clearValidationError() {
+    errorEl.textContent = '';
+    input.removeAttribute('aria-invalid');
+  }
+
+  input.addEventListener('input', clearValidationError);
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const input = form.querySelector('input[name="url"]') as HTMLInputElement;
     let url = input.value.trim();
     if (!url) return;
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'https://' + url;
     }
+    if (!isValidUrl(url)) {
+      showValidationError();
+      return;
+    }
+    clearValidationError();
     document.dispatchEvent(new CustomEvent('scan:start', { detail: { url } }));
   });
 </script>
@@ -158,6 +188,13 @@
 
   button[type="submit"]:hover {
     opacity: 0.85;
+  }
+
+  .url-error {
+    font-size: var(--text-xs);
+    color: var(--color-signal-red);
+    min-height: 1em;
+    margin-top: calc(var(--space-6) * -0.5);
   }
 
   .privacy-note {

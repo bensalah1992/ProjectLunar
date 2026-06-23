@@ -33,6 +33,9 @@ export const GET: APIRoute = async ({ url: reqUrl }) => {
   }
 
   const hostname = targetUrl.hostname;
+  if (!hostname.includes('.')) {
+    return json({ error: 'invalid_url' }, 400);
+  }
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
