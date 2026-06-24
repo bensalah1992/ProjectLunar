@@ -62,4 +62,4 @@ Open an issue on GitHub with:
 - What verdict you got vs. what you expected.
 - Browser and OS if it's a display/UX bug.
 
-For security vulnerabilities, please email [ab.bensalah@protonmail.com](mailto:ab.bensalah@pm.me) instead of opening a public issue.
+For security vulnerabilities, please email [ab.bensalah@pm.me](mailto:ab.bensalah@pm.me) instead of opening a public issue.
