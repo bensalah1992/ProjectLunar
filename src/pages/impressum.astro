@@ -19,20 +19,26 @@ import Layout from "../layouts/Layout.astro";
     <!-- ── English ─────────────────────────────────────────────── -->
     <section class="lang-block" id="en">
       <div class="lang-badge">English</div>
+      <p class="legal-note">
+        Required information pursuant to § 5 TMG (German Telemedia Act)
+      </p>
 
       <section>
         <h2>Responsible for content</h2>
-        <p>
-          <span class="placeholder">FIRST NAME LAST NAME</span><br />
-          <span class="placeholder">STREET HOUSE NUMBER</span><br />
-          <span class="placeholder">POSTAL CODE CITY</span><br />
-          Germany
-        </p>
+        <div class="contact-details"
+             aria-label="Abdallah Ben-Salah, Edwin-Scharff-Ring 58, 22309 Hamburg, Germany">
+          <span class="addr" aria-hidden="true" data-a="Abdallah" data-b=" Ben-Salah"></span><br aria-hidden="true" />
+          <span class="addr" aria-hidden="true" data-a="Edwin-Scharff-Ring" data-b=" 58"></span><br aria-hidden="true" />
+          <span class="addr" aria-hidden="true" data-a="22309" data-b=" Hamburg"></span><br aria-hidden="true" />
+          <span class="addr" aria-hidden="true" data-a="Germany" data-b=""></span>
+        </div>
       </section>
 
       <section>
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:ab.bensalah@pm.me">ab.bensalah@pm.me</a></p>
+        <p class="contact-details">
+          Email: <a href="mailto:ab.bensalah@pm.me">ab.bensalah@pm.me</a>
+        </p>
       </section>
 
       <section>
@@ -103,21 +109,24 @@ import Layout from "../layouts/Layout.astro";
     <!-- ── Deutsch ─────────────────────────────────────────────── -->
     <section class="lang-block" id="de">
       <div class="lang-badge">Deutsch</div>
-      <p class="legal-note">Angaben gemäß § 5 TMG</p>
+      <p class="legal-note">Pflichtangaben gemäß § 5 TMG</p>
 
       <section>
         <h2>Verantwortlich für den Inhalt</h2>
-        <p>
-          <span class="placeholder">VORNAME NACHNAME</span><br />
-          <span class="placeholder">STRASSE HAUSNUMMER</span><br />
-          <span class="placeholder">PLZ ORT</span><br />
-          Deutschland
-        </p>
+        <div class="contact-details"
+             aria-label="Abdallah Ben-Salah, Edwin-Scharff-Ring 58, 22309 Hamburg, Deutschland">
+          <span class="addr" aria-hidden="true" data-a="Abdallah" data-b=" Ben-Salah"></span><br aria-hidden="true" />
+          <span class="addr" aria-hidden="true" data-a="Edwin-Scharff-Ring" data-b=" 58"></span><br aria-hidden="true" />
+          <span class="addr" aria-hidden="true" data-a="22309" data-b=" Hamburg"></span><br aria-hidden="true" />
+          <span class="addr" aria-hidden="true" data-a="Deutschland" data-b=""></span>
+        </div>
       </section>
 
       <section>
         <h2>Kontakt</h2>
-        <p>E-Mail: <a href="mailto:ab.bensalah@pm.me">ab.bensalah@pm.me</a></p>
+        <p class="contact-details">
+          E-Mail: <a href="mailto:ab.bensalah@pm.me">ab.bensalah@pm.me</a>
+        </p>
       </section>
 
       <section>
@@ -289,18 +298,23 @@ import Layout from "../layouts/Layout.astro";
     color: var(--color-text);
   }
 
-  .placeholder {
-    color: var(--color-signal-yellow);
-    font-style: italic;
+  .contact-details {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.7;
   }
 
-  .placeholder::before {
-    content: "‹";
-    margin-right: 0.2em;
+  .addr::before {
+    content: attr(data-a) attr(data-b);
   }
-  .placeholder::after {
-    content: "›";
-    margin-left: 0.2em;
+
+  .contact-details a {
+    color: var(--color-text-muted);
+  }
+
+  .placeholder {
+    color: var(--color-text-muted);
+    font-style: italic;
   }
 
   @media (max-width: 600px) {
