@@ -2,6 +2,8 @@
 
 A free, open source URL trust scanner for everyday users. Paste any URL and get a clear green / yellow / red verdict in seconds.
 
+## I'm still learning. If you're an experienced developer and something could be done better, I'd genuinely appreciate the feedback. Open an issue, submit a PR, or reach out directly. ## See [CONTRIBUTING.md](CONTRIBUTING.md)
+
 ![LunarTrust Screenshot](public/screenshot.png)
 
 **Live demo:** [lunartrust.netlify.app](https://lunartrust.netlify.app)
@@ -62,7 +64,9 @@ The app works without the key — that check will return unknown and not affect 
 
 ## Contributing
 
-Contributions are welcome. A good starting point is `src/lib/checks/heuristics.ts` — adding brand entries, suspicious TLDs, or phishing path keywords requires no deep knowledge of the codebase. Please open an issue before submitting a large pull request.
+## A note from the developer
+
+Contributions are welcome. A good starting point is `src/lib/checks/heuristics.ts` —> adding brand entries, suspicious TLDs, or phishing path keywords requires no deep knowledge of the codebase. Please open an issue before submitting a large pull request.
 
 ## License
 
