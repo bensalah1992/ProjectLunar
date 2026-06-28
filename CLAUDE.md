@@ -1,4 +1,4 @@
-# ProjectLunar
+# Lunartrust
 
 ## What is this?
 

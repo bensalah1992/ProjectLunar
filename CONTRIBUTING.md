@@ -1,6 +1,6 @@
-# Contributing to ProjectLunar
+# Contributing to lunartrust
 
-Thanks for taking the time to contribute. ProjectLunar is a URL trust scanner built for everyday users —>> simple, fast, and privacy-first.
+Thanks for taking the time to contribute. Lunartrust is a URL trust scanner built for everyday users —>> simple, fast, and privacy-first.
 
 ## Getting Started
 
@@ -8,8 +8,8 @@ Thanks for taking the time to contribute. ProjectLunar is a URL trust scanner bu
 
 ```bash
 # Fork on GitHub, then:
-git clone https://github.com/<your-handle>/ProjectLunar.git
-cd ProjectLunar
+git clone https://github.com/<your-handle>/lunartrust.git
+cd lunartrust
 npm install
 cp .env.example .env   # add your SAFE_BROWSING_API_KEY
 npm run dev
@@ -48,7 +48,7 @@ These are concrete areas where help is welcome:
 
 ## Security & Privacy
 
-ProjectLunar's core promise is that no URL is stored or logged. Keep that promise in every change:
+Lunartrusts core promise is that no URL is stored or logged. Keep that promise in every change:
 
 - Never log, store, or forward scanned URLs.
 - API keys go in Netlify environment variables only — never in code or committed files.

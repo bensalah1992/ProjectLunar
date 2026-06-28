@@ -38,7 +38,7 @@ The one honest exception: the Google Safe Browsing check sends the URL to Google
 ## Run locally
 
 ```bash
-git clone https://github.com/bensalah1992/ProjectLunar.git
+git clone https://github.com/bensalah1992/lunartrust.git
 cd lunartrust
 npm install
 ```
