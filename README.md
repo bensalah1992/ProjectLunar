@@ -6,7 +6,7 @@ A free, open source URL trust scanner for everyday users. Paste any URL and get 
 
 ![LunarTrust Screenshot](public/screenshot.png)
 
-**Live demo:** [lunartrust.netlify.app](https://lunartrust.netlify.app)
+**Live demo:** [https://lunartrust.pages.dev/](https://lunartrust.pages.dev/)
 
 ---
 
